@@ -70,6 +70,24 @@ async def delete(auth: str):
     return Auth(auth=auth)
 
 
+def filter_by_role(auths: dict[str, int], role: Role) -> list[str]:
+    return [auth for auth, r in auths.items() if r == role.value]
+
+
+@app.get("/admin/list")
+async def list_admins() -> list[str]:
+    """Send the auth list of all admins."""
+    with open("auths.json") as f:
+        return filter_by_role(json.load(f), Role.ADMIN)
+
+
+@app.get("/master/list")
+async def list_masters() -> list[str]:
+    """Send the auth list of all masters."""
+    with open("auths.json") as f:
+        return filter_by_role(json.load(f), Role.MASTER)
+
+
 def save(auth: str, role: Role) -> None:
     with open("auths.json", "r") as f:
         auths: dict[str, Role.value] = json.load(f)
