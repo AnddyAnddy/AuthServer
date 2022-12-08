@@ -1,6 +1,6 @@
 To set up and start the server you must
-- pip install -r requirements.txt
-- uvicorn main:app --reload 
+- pip install -r requirements.txt (or python3 -m pip install -r requirements.txt)
+- uvicorn main:app --reload (or python3 main.py)
 
 You can either import your own "auths.json" with the following format:
 

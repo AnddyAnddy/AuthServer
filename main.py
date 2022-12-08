@@ -84,3 +84,9 @@ def remove(auth: str) -> None:
     auths.pop(auth, None)
     with open("auths.json", "w") as writer:
         json.dump(auths, writer, indent=4, sort_keys=True)
+
+
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run("main:app", reload=True)
