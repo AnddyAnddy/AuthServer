@@ -3,8 +3,17 @@ import json
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://www.haxball.com"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["Access-Control-Allow-Origin, Content-Type"],
+)
 
 
 def create_json_if_not_exist():
