@@ -29,8 +29,9 @@ create_json_if_not_exist()
 
 class Role(enum.Enum):
     NOTHING = 0
-    ADMIN = 1
-    MASTER = 2
+    TEMP_ADMIN = 1
+    ADMIN = 2
+    MASTER = 3
 
 
 class Auth(BaseModel):
@@ -50,8 +51,9 @@ async def root():
 async def get_role(auth: str) -> AuthUser:
     """Return code:
         0: No admin not master
-        1: admin
-        2: master
+        1: temp admin
+        2: admin
+        3: master
     """
     with open("auths.json", "r") as f:
         auths: dict[str, Role] = json.load(f)
